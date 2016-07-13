@@ -7,9 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.InputStream;
+import java.text.NumberFormat;
 import java.util.Properties;
 
 public class MainActivity extends AppCompatActivity {
@@ -65,12 +67,28 @@ public class MainActivity extends AppCompatActivity {
 
         TextView orderSummary = (TextView) findViewById(R.id.order_summary_message);
 
-        CheckBox checkBox = (CheckBox) findViewById(R.id.whipped_cream);
+        CheckBox whippedCream = (CheckBox) findViewById(R.id.whipped_cream);
 
-        orderSummary.setText("Name: Michael Peterson\n"
-                + "Add whipped cream? " + checkBox.isChecked() + "\n"
+        CheckBox chocolate = (CheckBox) findViewById(R.id.whipped_cream);
+
+        TextView nameText = (TextView) findViewById(R.id.name_text);
+
+        if (whippedCream.isChecked())
+            PRICE_PER_CUP++;
+        if (chocolate.isChecked())
+            PRICE_PER_CUP++;
+
+        double subTotal = quantity * PRICE_PER_CUP;
+        double taxTotal = subTotal * SALES_TAX;
+        double total = subTotal + taxTotal;
+
+        orderSummary.setText("Name: " + nameText.getText() + "\n"
+                + "Add whipped cream? " + whippedCream.isChecked() + "\n"
                 + "Quantity: " + quantity +  "\n"
-                + "Total: " + (quantity * PRICE_PER_CUP) + ((quantity * PRICE_PER_CUP) * SALES_TAX) + "\n"
+                + "Total: " + NumberFormat.getCurrencyInstance().format(subTotal)
+                + " Plus Tax (@ 6%): "
+                + NumberFormat.getCurrencyInstance().format(taxTotal) +  " = "
+                + NumberFormat.getCurrencyInstance().format(total) + "\n"
                 + "Thank You!");
     }
 

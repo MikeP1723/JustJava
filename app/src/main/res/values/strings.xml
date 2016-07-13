@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Just Java</string>
+    <string name="name_hint">Enter name here</string>
+    <string name="toppings_hdr">toppings</string>
+    <string name="whipped_cream_checkbox">Whipped cream</string>
+    <string name="chocolate_checkbox">Chocolate</string>
+    <string name="quantity_hdr">quantity</string>
+    <string name="decrement_button">-</string>
+    <string name="increment_button">+</string>
+    <string name="price_per_cup">0 @ $5.00 per cup.</string>
+    <string name="order_summary_hdr">order summary</string>
+    <string name="order_summary_text">Order not placed.</string>
+    <string name="submit_order_button">order</string>
 </resources>

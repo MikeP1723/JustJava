@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         context=this;
+        intializeProperties(props);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
 
+        context=this;
         intializeProperties(props);
 
         TextView cupsOrdered = (TextView) findViewById(R.id.quantity_text_view);
@@ -106,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
         qty++;
 
         quantityTextView.setText("" + qty + COST_PER_CUP);
-        double subTotal = qty * PRICE_PER_CUP;
 
         display(qty);
     }
@@ -127,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
         qty--;
 
         quantityTextView.setText("" + qty + COST_PER_CUP);
-        double subTotal = qty * PRICE_PER_CUP;
 
         display(qty);
     }

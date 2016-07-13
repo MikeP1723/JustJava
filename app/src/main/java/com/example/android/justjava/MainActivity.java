@@ -18,10 +18,14 @@ public class MainActivity extends AppCompatActivity {
     private static final String COST_PER_CUP_PROP = "COST_PER_CUP";
     private static final String SALES_TAX_PROP = "SALES_TAX";
     private static final String PRICE_PER_CUP_PROP = "PRICE_PER_CUP";
+    private static final String WHIP_CREAM_COST_PROP = "WHIP_CREAM_COST";
+    private static final String CHOC_COST_PROP = "CHOC_COST";
 
     private static String COST_PER_CUP;
     private static double SALES_TAX;
     private static double PRICE_PER_CUP;
+    private static double WHIP_CREAM_COST;
+    private static double CHOC_COST;
     private static Properties props = new Properties();
     private Context context;
 
@@ -46,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
             COST_PER_CUP = " " + props.getProperty(COST_PER_CUP_PROP);
             SALES_TAX = Double.parseDouble(props.getProperty(SALES_TAX_PROP));
             PRICE_PER_CUP = Double.parseDouble(props.getProperty(PRICE_PER_CUP_PROP));
+            WHIP_CREAM_COST = Double.parseDouble(props.getProperty(WHIP_CREAM_COST_PROP));
+            CHOC_COST = Double.parseDouble(props.getProperty(CHOC_COST_PROP));
 
 
         } catch (Exception e) {
@@ -79,9 +85,9 @@ public class MainActivity extends AppCompatActivity {
         TextView nameText = (TextView) findViewById(R.id.name_text);
 
         if (null != whippedCream && whippedCream.isChecked())
-            PRICE_PER_CUP++;
+            PRICE_PER_CUP = PRICE_PER_CUP + WHIP_CREAM_COST;
         if (null != chocolate && chocolate.isChecked())
-            PRICE_PER_CUP++;
+            PRICE_PER_CUP = PRICE_PER_CUP + CHOC_COST;
 
         double subTotal = quantity * PRICE_PER_CUP;
         double taxTotal = subTotal * SALES_TAX;

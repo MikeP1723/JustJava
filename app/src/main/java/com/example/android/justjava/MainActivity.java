@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Displays the final total with sales tax.
-     * @param view
+     *
      */
     public void submitOrder(View view) {
 
@@ -66,7 +66,10 @@ public class MainActivity extends AppCompatActivity {
 
         TextView cupsOrdered = (TextView) findViewById(R.id.quantity_text_view);
 
-        int quantity = Integer.parseInt(cupsOrdered.getText().toString().substring(0, cupsOrdered.getText().toString().indexOf(" ")));
+        int quantity = 0;
+
+        if (null != cupsOrdered)
+            quantity = Integer.parseInt(cupsOrdered.getText().toString().substring(0, cupsOrdered.getText().toString().indexOf(" ")));
 
         TextView orderSummary = (TextView) findViewById(R.id.order_summary_message);
 
@@ -76,16 +79,19 @@ public class MainActivity extends AppCompatActivity {
 
         TextView nameText = (TextView) findViewById(R.id.name_text);
 
-        if (whippedCream.isChecked())
+        if (null != whippedCream && whippedCream.isChecked())
             PRICE_PER_CUP++;
-        if (chocolate.isChecked())
+        if (null != chocolate && chocolate.isChecked())
             PRICE_PER_CUP++;
 
         double subTotal = quantity * PRICE_PER_CUP;
         double taxTotal = subTotal * SALES_TAX;
         double total = subTotal + taxTotal;
 
-        orderSummary.setText("Name: " + nameText.getText() + "\n"
+        String summaryText = "";
+
+        if (null != nameText && null != whippedCream && null != chocolate)
+            summaryText = "Name: " + nameText.getText() + "\n"
                 + "Add whipped cream? " + whippedCream.isChecked() + "\n"
                 + "Add chocolate? " + chocolate.isChecked() + "\n"
                 + "Quantity: " + quantity +  "\n"
@@ -93,55 +99,68 @@ public class MainActivity extends AppCompatActivity {
                 + " Plus Tax (@ " + (SALES_TAX * 100) + "%): "
                 + NumberFormat.getCurrencyInstance().format(taxTotal) +  " = "
                 + NumberFormat.getCurrencyInstance().format(total) + "\n"
-                + "Thank You!");
+                + "Thank You!";
+
+        if (null != orderSummary)
+            orderSummary.setText(summaryText);
     }
 
     /**
      * Increments the number of cups and calculates tax and subtotal.
-     * @param view
+     *
      */
     public void incrementQty(View view) {
 
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
 
-        int qty = Integer.parseInt(quantityTextView.getText().toString().substring(0, quantityTextView.getText().toString().indexOf(" ")));
+        int qty = 0;
+
+        if (null != quantityTextView)
+            qty = Integer.parseInt(quantityTextView.getText().toString().substring(0, quantityTextView.getText().toString().indexOf(" ")));
+
         qty++;
 
-        quantityTextView.setText("" + qty + COST_PER_CUP);
+        String text = "" + qty + COST_PER_CUP;
+
+        if (null != quantityTextView)
+            quantityTextView.setText(text);
 
         display(qty);
     }
 
     /**
      * Decrements the number of cups and calculates the tax and subtotal.
-     * @param view
+     *
      */
     public void decrementQty(View view) {
 
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
 
-        int qty = Integer.parseInt(quantityTextView.getText().toString().substring(0, quantityTextView.getText().toString().indexOf(" ")));
+        int qty = 0;
+
+        if (null != quantityTextView)
+            qty = Integer.parseInt(quantityTextView.getText().toString().substring(0, quantityTextView.getText().toString().indexOf(" ")));
 
         if (qty == 0)
             return;
 
         qty--;
 
-        quantityTextView.setText("" + qty + COST_PER_CUP);
+        String text = "" + qty + COST_PER_CUP;
+
+        quantityTextView.setText(text);
 
         display(qty);
-    }
-
-    public void addTopping(View view) {
-
-
-
     }
 
     private void display(int number) {
 
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("" + number + COST_PER_CUP);
+
+        String text = "" + number + COST_PER_CUP;
+
+        if (null != quantityTextView)
+            quantityTextView.setText(text);
     }
 
 

@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         context=this;
-        intializeProperties(props);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
@@ -61,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
 
+        intializeProperties(props);
+
         TextView cupsOrdered = (TextView) findViewById(R.id.quantity_text_view);
 
         int quantity = Integer.parseInt(cupsOrdered.getText().toString().substring(0, cupsOrdered.getText().toString().indexOf(" ")));
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
         CheckBox whippedCream = (CheckBox) findViewById(R.id.whipped_cream);
 
-        CheckBox chocolate = (CheckBox) findViewById(R.id.whipped_cream);
+        CheckBox chocolate = (CheckBox) findViewById(R.id.chocolate);
 
         TextView nameText = (TextView) findViewById(R.id.name_text);
 
@@ -84,9 +85,10 @@ public class MainActivity extends AppCompatActivity {
 
         orderSummary.setText("Name: " + nameText.getText() + "\n"
                 + "Add whipped cream? " + whippedCream.isChecked() + "\n"
+                + "Add chocolate? " + chocolate.isChecked() + "\n"
                 + "Quantity: " + quantity +  "\n"
                 + "Total: " + NumberFormat.getCurrencyInstance().format(subTotal)
-                + " Plus Tax (@ 6%): "
+                + " Plus Tax (@ " + (SALES_TAX * 100) + "%): "
                 + NumberFormat.getCurrencyInstance().format(taxTotal) +  " = "
                 + NumberFormat.getCurrencyInstance().format(total) + "\n"
                 + "Thank You!");

@@ -109,7 +109,9 @@ public class MainActivity extends AppCompatActivity {
                 + "Thank You!";
 
         // Send Email
-        String subject = "JustJava order summary for " + nameText;
+        String subject = "";
+        if (null != nameText)
+            subject = "JustJava order summary for " + nameText.getText();
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setType("text/plain");
         intent.setData(Uri.parse("mailto:")); // only email apps should handle this

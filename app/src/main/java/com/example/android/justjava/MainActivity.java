@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         if (null != cupsOrdered)
             quantity = Integer.parseInt(cupsOrdered.getText().toString().substring(0, cupsOrdered.getText().toString().indexOf(" ")));
 
-        TextView orderSummary = (TextView) findViewById(R.id.order_summary_message);
+//        TextView orderSummary = (TextView) findViewById(R.id.order_summary_message);
 
         CheckBox whippedCream = (CheckBox) findViewById(R.id.whipped_cream);
 

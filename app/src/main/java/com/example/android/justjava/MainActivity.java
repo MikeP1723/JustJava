@@ -121,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-        if (null != orderSummary)
-            orderSummary.setText(summaryText);
+//        if (null != orderSummary)
+//            orderSummary.setText(summaryText);
 
 
     }
